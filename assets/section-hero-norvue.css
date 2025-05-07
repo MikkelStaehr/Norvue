@@ -108,7 +108,11 @@
   }
   
   .hero-norvue__image-column {
-    display: none; /* Skjul billedet på mobil */
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
   .hero-norvue__heading {

@@ -28,7 +28,15 @@
     <div
       class="hero-norvue__image-column"
       {% if section.settings.image != blank %}
-        style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}');"
+        style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"
+      {% endif %}
+    ></div>
+    <div
+      class="hero-norvue__image-column"
+      {% if section.settings.image != blank %}
+        style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"
+      {% else %}
+        style="background-color: #f4f4f4;"
       {% endif %}
     ></div>
   </div>
