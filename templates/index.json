@@ -13,29 +13,108 @@
       "type": "hero-norvue",
       "name": "Tanrevel Hero",
       "settings": {
-        "heading": "TANREVEL LIVING",
-        "subtext": "<p>Smukke boligtekstiler af allergivenlige og bæredygtige kvaliteter - præcis som et hjem skal føles.</p>",
+        "heading": "Klarhed. Fokus. Uden kompromis.",
+        "subtext": "<p>Sportsbriller kurateret til det nordiske lys, det skiftende vejr og den aktive livsstil. Cykling, golf, jagt og gaming – samlet ét sted.</p>",
         "button_label": "Shop",
         "button_link": "",
         "color_scheme": ""
+      }
+    },
+    "collection_grid_norvue_xtg9Jy": {
+      "type": "collection-grid-norvue",
+      "blocks": {
+        "featured_collection_TnTWN9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "show_description": false,
+            "button_label": "Se kollektion"
+          }
+        },
+        "featured_collection_bQEMPV": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "show_description": false,
+            "button_label": "Se kollektion"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_TnTWN9",
+        "featured_collection_bQEMPV"
+      ],
+      "name": "Kategori Grid",
+      "settings": {
+        "title": "Shop vores kategorier",
+        "description": "",
+        "grid_layout": "grid--2-column",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "about_norvue_8epmkC": {
       "type": "about-norvue",
       "name": "About NORVUE",
       "settings": {
-        "heading": "Om NORVUE",
+        "heading": "NORVUE er en nordisk platform for performance eyewear.",
         "heading_size": "h1",
-        "text": "<p>Her kan du fortælle om NORVUE og hvad der gør jer unikke. Tilføj din historie, vision og værdier.</p>",
+        "text": "<p>Vi samler sportsbriller på tværs af sportsgrene – cykling, golf, jagt, outdoor og e-sport – med fokus på funktion, æstetik og holdbarhed.</p><p>Hos os handler det ikke om at repræsentere ét brand.<br/><br/>Vi udvælger, tester og kuraterer det bedste fra flere, så du får adgang til udstyr, der matcher dine behov – i det lys og den virkelighed, vi lever i her i Norden.</p>",
         "full_width": false,
         "color_scheme": "",
         "padding_top": 100,
         "padding_bottom": 100
       }
+    },
+    "testimonials_norvue_eYXAJP": {
+      "type": "testimonials-norvue",
+      "blocks": {
+        "testimonial_UNmP6W": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Del en anmeldelse eller kundeudtalelse for at vise troværdighed og social proof for dine produkter.</p>",
+            "author_name": "Kunde Navn",
+            "author_info": "Tilfreds kunde"
+          }
+        },
+        "testimonial_gdUUYi": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Del en anmeldelse eller kundeudtalelse for at vise troværdighed og social proof for dine produkter.</p>",
+            "author_name": "Kunde Navn",
+            "author_info": "Tilfreds kunde"
+          }
+        },
+        "testimonial_MTdHcN": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Del en anmeldelse eller kundeudtalelse for at vise troværdighed og social proof for dine produkter.</p>",
+            "author_name": "Kunde Navn",
+            "author_info": "Tilfreds kunde"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_UNmP6W",
+        "testimonial_gdUUYi",
+        "testimonial_MTdHcN"
+      ],
+      "name": "Kundeudtalelser",
+      "settings": {
+        "heading": "Kunderne siger",
+        "subheading": "<p>Læs hvad vores tilfredse kunder siger om vores produkter</p>",
+        "layout": "grid",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "hero_norvue_NwWk8k",
-    "about_norvue_8epmkC"
+    "collection_grid_norvue_xtg9Jy",
+    "about_norvue_8epmkC",
+    "testimonials_norvue_eYXAJP"
   ]
 }
