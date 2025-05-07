@@ -24,7 +24,7 @@
       <div
         class="hero-norvue__image"
         {% if section.settings.image != blank %}
-          style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}');"
+          style="background-image: url({{ section.settings.image | img_url: '1500x' }});"
         {% endif %}
       ></div>
     </div>
