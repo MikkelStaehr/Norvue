@@ -1,9 +1,9 @@
 {{ 'section-hero-norvue.css' | asset_url | stylesheet_tag }}
 
-<div class="hero-norvue color-{{ section.settings.color_scheme }}">
-  <div class="hero-norvue__container">
-    <div class="hero-norvue__content">
-      <div class="hero-norvue__text-wrapper animate-element">
+<div class="hero-norvue">
+  <div class="hero-norvue__container color-{{ section.settings.color_scheme }}">
+    <div class="hero-norvue__text-column animate-element">
+      <div class="hero-norvue__text-content">
         {%- if section.settings.heading != blank -%}
           <h1 class="hero-norvue__heading">{{ section.settings.heading }}</h1>
         {%- endif -%}
@@ -25,30 +25,12 @@
       </div>
     </div>
 
-    <div class="hero-norvue__image-container">
-      {%- if section.settings.image != blank -%}
-        <img
-          srcset="
-            {%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
-            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
-            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | image_url: width: 2200 }} 2200w,{%- endif -%}
-            {{ section.settings.image | image_url }} {{ section.settings.image.width }}w
-          "
-          sizes="(min-width: 750px) 50vw, 100vw"
-          src="{{ section.settings.image | image_url: width: 1500 }}"
-          loading="eager"
-          fetchpriority="high"
-          alt="{{ section.settings.image.alt | escape }}"
-          width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.height }}"
-          class="hero-norvue__image"
-        >
-      {%- else -%}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {%- endif -%}
-    </div>
+    <div
+      class="hero-norvue__image-column"
+      {% if section.settings.image != blank %}
+        style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}');"
+      {% endif %}
+    ></div>
   </div>
 </div>
 
@@ -59,7 +41,8 @@
     // Sæt initial styling på elementer
     animatedElements.forEach((element) => {
       element.style.opacity = '0';
-      element.style.transform = 'translateX(-30px)';
+      element.style.transform = 'translateX(-40px)';
+      element.style.transition = 'opacity 0.9s ease-out, transform 0.9s ease-out';
     });
 
     // Observer til fade-in animation
@@ -68,14 +51,16 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Trigger animation når element er synligt
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateX(0)';
+            }, 150);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.15,
       }
     );
 
@@ -88,9 +73,9 @@
 
 {% schema %}
 {
-  "name": "Split Hero",
+  "name": "Hero Banner",
   "tag": "section",
-  "class": "section",
+  "class": "section section-full-height",
   "settings": [
     {
       "type": "text",
@@ -101,7 +86,7 @@
     {
       "type": "richtext",
       "id": "text",
-      "default": "<p>Fortæl om din kollektion her. Beskriv stilen, inspirationen og det unikke ved dine produkter. Denne tekst bør hjælpe kunderne med at forstå din brands værdier.</p>",
+      "default": "<p>Moderne design med fokus på kvalitet og bæredygtighed. Oplev vores kollektion af tidløse stykker, der kombinerer skandinavisk æstetik med funktionalitet.</p>",
       "label": "Tekst"
     },
     {
@@ -124,18 +109,18 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Billede"
+      "label": "Baggrundsbillede"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Farveskema",
-      "default": "scheme-1"
+      "default": "background-1"
     }
   ],
   "presets": [
     {
-      "name": "NORVUE Split Hero",
+      "name": "NORVUE Hero",
       "category": "Hero"
     }
   ]
