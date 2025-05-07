@@ -21,16 +21,12 @@
     </div>
 
     <div class="hero-norvue__image-column">
-      {%- if section.settings.image != blank -%}
-        <div
-          class="hero-norvue__image"
-          style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}');"
-        ></div>
-      {%- else -%}
-        <div class="hero-norvue__image hero-norvue__image--placeholder">
-          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        </div>
-      {%- endif -%}
+      <div
+        class="hero-norvue__image"
+        {% if section.settings.image != blank %}
+          style="background-image: url({{ section.settings.image | img_url: '1500x' }});"
+        {% endif %}
+      ></div>
     </div>
   </div>
 </div>
