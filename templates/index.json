@@ -93,12 +93,21 @@
             "author_name": "Kunde Navn",
             "author_info": "Tilfreds kunde"
           }
+        },
+        "testimonial_43LMWL": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Del en anmeldelse eller kundeudtalelse for at vise troværdighed og social proof for dine produkter.</p>",
+            "author_name": "Kunde Navn",
+            "author_info": "Tilfreds kunde"
+          }
         }
       },
       "block_order": [
         "testimonial_UNmP6W",
         "testimonial_gdUUYi",
-        "testimonial_MTdHcN"
+        "testimonial_MTdHcN",
+        "testimonial_43LMWL"
       ],
       "name": "Kundeudtalelser",
       "settings": {
