@@ -9,14 +9,47 @@
  */
 {
   "sections": {
-    "hero_norvue_NwWk8k": {
-      "type": "hero-norvue",
-      "name": "Tanrevel Hero",
+    "hero_slider_BG7E4c": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_HE89UD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/20250507_0706_Mountain_Cycling_Adventure_simple_compose_01jtmj4q18fbpaqy7kzj2k4fk9.png",
+            "heading": "TANREVEL LIVING",
+            "subtext": "<p>Smukke boligtekstiler af allergivenlige og bæredygtige kvaliteter - præcis som et hjem skal føles.</p>",
+            "button_label": "Shop",
+            "button_link": ""
+          }
+        },
+        "slide_mwXxe8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/20250507_0727_Stylish_Golfer_Sunglasses_remix_01jtmkbgkfekxarskqnw3gctgq.png",
+            "heading": "TANREVEL LIVING",
+            "subtext": "<p>Smukke boligtekstiler af allergivenlige og bæredygtige kvaliteter - præcis som et hjem skal føles.</p>",
+            "button_label": "Shop",
+            "button_link": ""
+          }
+        },
+        "slide_cEakrb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/20250507_0801_Gamer_Focus_Glasses_remix_01jtmn8dj2edc9zdp6ch5rqqf9.png",
+            "heading": "TANREVEL LIVING",
+            "subtext": "<p>Smukke boligtekstiler af allergivenlige og bæredygtige kvaliteter - præcis som et hjem skal føles.</p>",
+            "button_label": "Shop",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_HE89UD",
+        "slide_mwXxe8",
+        "slide_cEakrb"
+      ],
+      "name": "Hero Slider",
       "settings": {
-        "heading": "Klarhed. Fokus. Uden kompromis.",
-        "subtext": "<p>Sportsbriller kurateret til det nordiske lys, det skiftende vejr og den aktive livsstil. Cykling, golf, jagt og gaming – samlet ét sted.</p>",
-        "button_label": "Shop",
-        "button_link": "",
         "color_scheme": ""
       }
     },
@@ -121,7 +154,7 @@
     }
   },
   "order": [
-    "hero_norvue_NwWk8k",
+    "hero_slider_BG7E4c",
     "collection_grid_norvue_xtg9Jy",
     "about_norvue_8epmkC",
     "testimonials_norvue_eYXAJP"
