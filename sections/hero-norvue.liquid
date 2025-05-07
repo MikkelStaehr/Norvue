@@ -1,55 +1,52 @@
 {{ 'section-hero-norvue.css' | asset_url | stylesheet_tag }}
 
 <div class="hero-norvue color-{{ section.settings.color_scheme }}">
-  {%- if section.settings.image != blank -%}
-    <div class="hero-norvue__image-container">
-      <img
-        srcset="
-          {%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
-          {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
-          {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
-          {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-          {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | image_url: width: 2200 }} 2200w,{%- endif -%}
-          {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
-          {{ section.settings.image | image_url }} {{ section.settings.image.width }}w
-        "
-        sizes="100vw"
-        src="{{ section.settings.image | image_url: width: 1500 }}"
-        loading="eager"
-        fetchpriority="high"
-        alt="{{ section.settings.image.alt | escape }}"
-        width="{{ section.settings.image.width }}"
-        height="{{ section.settings.image.height }}"
-        class="hero-norvue__image"
-      >
-    </div>
-    {%- if section.settings.image_overlay -%}
-      <div
-        class="hero-norvue__overlay"
-        style="opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};"
-      ></div>
-    {%- endif -%}
-  {%- endif -%}
-
-  <div class="hero-norvue__content-container">
+  <div class="hero-norvue__container">
     <div class="hero-norvue__content">
-      {%- if section.settings.heading != blank -%}
-        <h1 class="hero-norvue__heading animate-element">{{ section.settings.heading }}</h1>
-      {%- endif -%}
+      <div class="hero-norvue__text-wrapper animate-element">
+        {%- if section.settings.heading != blank -%}
+          <h1 class="hero-norvue__heading">{{ section.settings.heading }}</h1>
+        {%- endif -%}
 
-      {%- if section.settings.subheading != blank -%}
-        <div class="hero-norvue__subheading animate-element">{{ section.settings.subheading }}</div>
-      {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="hero-norvue__text rte">{{ section.settings.text }}</div>
+        {%- endif -%}
 
-      {%- if section.settings.button_label != blank -%}
-        <div class="hero-norvue__button-wrapper animate-element">
-          <a
-            href="{{ section.settings.button_link }}"
-            class="hero-norvue__button button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-          >
-            {{ section.settings.button_label | escape }}
-          </a>
-        </div>
+        {%- if section.settings.button_label != blank -%}
+          <div class="hero-norvue__button-wrapper">
+            <a
+              href="{{ section.settings.button_link }}"
+              class="hero-norvue__button button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{ section.settings.button_label | escape }}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hero-norvue__image-container">
+      {%- if section.settings.image != blank -%}
+        <img
+          srcset="
+            {%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | image_url: width: 2200 }} 2200w,{%- endif -%}
+            {{ section.settings.image | image_url }} {{ section.settings.image.width }}w
+          "
+          sizes="(min-width: 750px) 50vw, 100vw"
+          src="{{ section.settings.image | image_url: width: 1500 }}"
+          loading="eager"
+          fetchpriority="high"
+          alt="{{ section.settings.image.alt | escape }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          class="hero-norvue__image"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
     </div>
   </div>
@@ -57,25 +54,22 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Observer til fade-in animation
     const animatedElements = document.querySelectorAll('.animate-element');
 
-    // Sæt initial styling (usynlig)
+    // Sæt initial styling på elementer
     animatedElements.forEach((element) => {
       element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
+      element.style.transform = 'translateX(-30px)';
     });
 
-    // Staggered delay for animation (så elementerne animerer ind efter hinanden)
+    // Observer til fade-in animation
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }, index * 250); // 250ms mellem hvert element
-
+            // Trigger animation når element er synligt
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
             observer.unobserve(entry.target);
           }
         });
@@ -94,43 +88,21 @@
 
 {% schema %}
 {
-  "name": "Hero banner",
+  "name": "Split Hero",
   "tag": "section",
   "class": "section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Baggrundsbillede"
-    },
-    {
-      "type": "checkbox",
-      "id": "image_overlay",
-      "label": "Tilføj mørk overlay",
-      "default": true,
-      "info": "Hjælper med at gøre tekst mere læsbar på lyse billeder"
-    },
-    {
-      "type": "range",
-      "id": "image_overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "label": "Opacity på overlay",
-      "default": 40
-    },
-    {
       "type": "text",
       "id": "heading",
-      "default": "Din overskrift her",
+      "default": "NORVUE Collection",
       "label": "Overskrift"
     },
     {
       "type": "richtext",
-      "id": "subheading",
-      "default": "<p>Fortæl lidt om din brand her. Kort og præcist. Lad denne tekst forklare hvad der gør din webshop unik.</p>",
-      "label": "Undertekst"
+      "id": "text",
+      "default": "<p>Fortæl om din kollektion her. Beskriv stilen, inspirationen og det unikke ved dine produkter. Denne tekst bør hjælpe kunderne med at forstå din brands værdier.</p>",
+      "label": "Tekst"
     },
     {
       "type": "text",
@@ -150,6 +122,11 @@
       "label": "Brug sekundær knap-stil"
     },
     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Farveskema",
@@ -158,7 +135,7 @@
   ],
   "presets": [
     {
-      "name": "NORVUE Hero",
+      "name": "NORVUE Split Hero",
       "category": "Hero"
     }
   ]
