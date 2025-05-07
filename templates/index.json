@@ -9,18 +9,15 @@
  */
 {
   "sections": {
-    "hero_norvue_Q9JdfC": {
+    "hero_norvue_xUFgkh": {
       "type": "hero-norvue",
-      "name": "NORVUE Hero",
+      "name": "Tanrevel Hero",
       "settings": {
-        "image": "shopify://shop_images/20250507_0706_Mountain_Cycling_Adventure_simple_compose_01jtmj4q18fbpaqy7kzj2k4fk9.png",
-        "image_overlay": true,
-        "image_overlay_opacity": 40,
-        "heading": "Din overskrift her",
-        "subheading": "<p>Fortæl lidt om din brand her. Kort og præcist. Lad denne tekst forklare hvad der gør din webshop unik.</p>",
-        "button_label": "Shop nu",
+        "heading": "TANREVEL LIVING",
+        "subtext": "<p>Smukke boligtekstiler af allergivenlige og bæredygtige kvaliteter - præcis som et hjem skal føles.</p>",
+        "button_label": "Shop",
         "button_link": "",
-        "button_style_secondary": false,
+        "image": "shopify://shop_images/20250507_0706_Mountain_Cycling_Adventure_simple_compose_01jtmj4q18fbpaqy7kzj2k4fk9.png",
         "color_scheme": ""
       }
     },
@@ -39,7 +36,7 @@
     }
   },
   "order": [
-    "hero_norvue_Q9JdfC",
+    "hero_norvue_xUFgkh",
     "about_norvue_8epmkC"
   ]
 }
