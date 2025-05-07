@@ -1,0 +1,320 @@
+{{ 'section-explore-norvue.css' | asset_url | stylesheet_tag }}
+
+<div class="section section-explore-norvue">
+  <explore-norvue class="explore-norvue color-{{ section.settings.color_scheme }}">
+    <div class="explore-norvue__wrapper page-width">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="explore-norvue__heading{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="explore-norvue__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.subheading }}
+        </div>
+      {%- endif -%}
+
+      <div class="explore-norvue__icons-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="explore-norvue__icons">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'category' -%}
+              <div class="explore-norvue__icon-item" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                <button
+                  class="explore-norvue__icon-button{% if forloop.first %} active{% endif %}"
+                  data-collection-handle="{{ block.settings.collection.handle }}"
+                  aria-label="{{ block.settings.category_name }}"
+                >
+                  {%- if block.settings.icon != blank -%}
+                    <div class="explore-norvue__icon-image">
+                      <img
+                        srcset="{{ block.settings.icon | image_url: width: 100 }}"
+                        src="{{ block.settings.icon | image_url: width: 100 }}"
+                        alt="{{ block.settings.category_name | escape }}"
+                        width="{{ block.settings.icon.width }}"
+                        height="{{ block.settings.icon.height }}"
+                        loading="lazy"
+                      >
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.category_name != blank -%}
+                    <div class="explore-norvue__icon-text">{{ block.settings.category_name }}</div>
+                  {%- endif -%}
+                </button>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="explore-norvue__products-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category' and block.settings.collection != blank -%}
+            <div
+              class="explore-norvue__products"
+              data-products-for="{{ block.id }}"
+              data-collection-handle="{{ block.settings.collection.handle }}"
+              {% unless forloop.first %}
+                style="display: none;"
+              {% endunless %}
+            >
+              <div class="explore-norvue__products-grid">
+                {%- assign products_to_display = section.settings.products_to_show | default: 4 -%}
+                {%- for product in block.settings.collection.products limit: products_to_display -%}
+                  <div class="explore-norvue__product-item">
+                    <a href="{{ product.url }}" class="explore-norvue__product-link">
+                      <div class="explore-norvue__product-image-wrapper">
+                        {%- if product.featured_media != blank -%}
+                          <img
+                            srcset="
+                              {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                              {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                              {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                              {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                              {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                              {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                            "
+                            src="{{ product.featured_media | image_url: width: 533 }}"
+                            sizes="(min-width: 1400px) 317px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                            alt="{{ product.featured_media.alt | escape }}"
+                            class="explore-norvue__product-image"
+                            loading="lazy"
+                            width="{{ product.featured_media.width }}"
+                            height="{{ product.featured_media.height }}"
+                          >
+                        {%- else -%}
+                          {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {%- endif -%}
+
+                        {%- if product.available == false -%}
+                          <div class="explore-norvue__product-badge">
+                            <span>{{ 'products.product.sold_out' | t }}</span>
+                          </div>
+                        {%- elsif product.compare_at_price > product.price and product.available -%}
+                          <div class="explore-norvue__product-badge">
+                            <span>{{ 'products.product.on_sale' | t }}</span>
+                          </div>
+                        {%- endif -%}
+                      </div>
+
+                      <div class="explore-norvue__product-info">
+                        <h3 class="explore-norvue__product-title">
+                          {{ product.title }}
+                        </h3>
+
+                        {%- if section.settings.show_vendor and product.vendor != blank -%}
+                          <p class="explore-norvue__product-vendor">{{ product.vendor }}</p>
+                        {%- endif -%}
+
+                        <div class="explore-norvue__product-price">
+                          {%- if product.compare_at_price > product.price -%}
+                            <span class="explore-norvue__product-price-item price-item--sale">
+                              {{ product.price | money }}
+                            </span>
+                            <span class="explore-norvue__product-price-item price-item--regular">
+                              {{ product.compare_at_price | money }}
+                            </span>
+                          {%- else -%}
+                            <span class="explore-norvue__product-price-item">
+                              {{ product.price | money }}
+                            </span>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {%- endfor -%}
+              </div>
+
+              {%- if section.settings.show_view_all -%}
+                <div class="explore-norvue__view-all">
+                  <a href="{{ block.settings.collection.url }}" class="explore-norvue__view-all-link">
+                    {{ section.settings.view_all_text | default: 'Se alle produkter' }}
+                  </a>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </explore-norvue>
+</div>
+
+<script>
+  class ExploreNorvue extends HTMLElement {
+    constructor() {
+      super();
+      this.iconButtons = this.querySelectorAll('.explore-norvue__icon-button');
+      this.productContainers = this.querySelectorAll('.explore-norvue__products');
+
+      this.init();
+    }
+
+    init() {
+      this.iconButtons.forEach((button) => {
+        button.addEventListener('click', this.handleIconClick.bind(this));
+      });
+
+      // Fade in animations
+      if (window.IntersectionObserver) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('animate-active');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        document.querySelectorAll('.animate--slide-in').forEach((el) => {
+          observer.observe(el);
+        });
+      }
+    }
+
+    handleIconClick(event) {
+      const button = event.currentTarget;
+      const blockId = button.closest('.explore-norvue__icon-item').dataset.blockId;
+
+      // Update active state on buttons
+      this.iconButtons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Hide all product containers and show the selected one
+      this.productContainers.forEach((container) => {
+        container.style.display = container.dataset.productsFor === blockId ? 'block' : 'none';
+      });
+    }
+  }
+
+  customElements.define('explore-norvue', ExploreNorvue);
+</script>
+
+{% schema %}
+{
+  "name": "Udforsk efter kategori",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Vælg din sport",
+      "label": "Overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "default": "<p>Udforsk vores produkter fordelt på sport og aktiviteter</p>",
+      "label": "Undertekst"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4,
+      "label": "Antal produkter at vise per kategori"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Vis produktleverandør"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Vis 'Se alle' knap"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "default": "Se alle produkter",
+      "label": "Tekst til 'Se alle' knap"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Sektions-mellemrum"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top mellemrum",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bund mellemrum",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Kategori",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Kategori ikon"
+        },
+        {
+          "type": "text",
+          "id": "category_name",
+          "default": "Kategori navn",
+          "label": "Kategori navn"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Produktkollektion"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Udforsk efter kategori",
+      "category": "Produkter",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
