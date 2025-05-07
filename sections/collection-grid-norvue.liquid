@@ -1,0 +1,213 @@
+{{ 'section-collection-grid-norvue.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-grid-norvue color-{{ section.settings.color_scheme }}">
+  <div class="collection-grid-norvue__wrapper page-width">
+    {%- if section.settings.title != blank -%}
+      <h2 class="collection-grid-norvue__heading{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.title }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.description != blank -%}
+      <div class="collection-grid-norvue__description rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.description }}
+      </div>
+    {%- endif -%}
+
+    <div class="collection-grid-norvue__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.collection != blank -%}
+          <div
+            class="collection-grid-norvue__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <a href="{{ block.settings.collection.url }}" class="collection-grid-norvue__link">
+              <div class="collection-grid-norvue__media">
+                {%- if block.settings.collection.featured_image != blank -%}
+                  <div class="collection-grid-norvue__image-wrapper">
+                    <img
+                      srcset="
+                        {%- if block.settings.collection.featured_image.width >= 165 -%}{{ block.settings.collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+                        {%- if block.settings.collection.featured_image.width >= 360 -%}{{ block.settings.collection.featured_image | image_url: width: 360 }} 360w,{%- endif -%}
+                        {%- if block.settings.collection.featured_image.width >= 533 -%}{{ block.settings.collection.featured_image | image_url: width: 533 }} 533w,{%- endif -%}
+                        {%- if block.settings.collection.featured_image.width >= 720 -%}{{ block.settings.collection.featured_image | image_url: width: 720 }} 720w,{%- endif -%}
+                        {%- if block.settings.collection.featured_image.width >= 940 -%}{{ block.settings.collection.featured_image | image_url: width: 940 }} 940w,{%- endif -%}
+                        {{ block.settings.collection.featured_image | image_url }} {{ block.settings.collection.featured_image.width }}w
+                      "
+                      src="{{ block.settings.collection.featured_image | image_url: width: 533 }}"
+                      sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc(100vw - 30px)"
+                      alt="{{ block.settings.collection.title | escape }}"
+                      loading="lazy"
+                      width="{{ block.settings.collection.featured_image.width }}"
+                      height="{{ block.settings.collection.featured_image.height }}"
+                      class="collection-grid-norvue__image"
+                    >
+                  </div>
+                {%- else -%}
+                  <div class="collection-grid-norvue__image-placeholder">
+                    {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="collection-grid-norvue__content">
+                <h3 class="collection-grid-norvue__title">
+                  {{ block.settings.collection.title }}
+                </h3>
+
+                {%- if block.settings.show_description and block.settings.collection.description != blank -%}
+                  <div class="collection-grid-norvue__text rte">
+                    {{ block.settings.collection.description | strip_html | truncate: 120 }}
+                  </div>
+                {%- endif -%}
+
+                <span class="collection-grid-norvue__button">
+                  {%- if block.settings.button_label != blank -%}
+                    {{ block.settings.button_label }}
+                  {%- else -%}
+                    {{ 'collections.general.view_all' | t }}
+                  {%- endif -%}
+                </span>
+              </div>
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // IntersectionObserver til animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Tilføj klasse, når elementet er synligt
+            entry.target.classList.add('animate-active');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    // Observer alle elementer med animate--slide-in klassen
+    document.querySelectorAll('.animate--slide-in').forEach((el) => {
+      observer.observe(el);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Kategori Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Shoppes vores kategorier",
+      "label": "Overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Beskrivelse"
+    },
+    {
+      "type": "select",
+      "id": "grid_layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "grid--2-column",
+          "label": "2 kolonner"
+        },
+        {
+          "value": "grid--3-column",
+          "label": "3 kolonner"
+        }
+      ],
+      "default": "grid--2-column",
+      "label": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Sektions-mellemrum"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top mellemrum",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bund mellemrum",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "Kollektion",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Kollektion"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_description",
+          "default": false,
+          "label": "Vis beskrivelse"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Se kollektion",
+          "label": "Knaptekst"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kategori Grid",
+      "category": "Kollektion",
+      "blocks": [
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
