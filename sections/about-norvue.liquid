@@ -1,0 +1,148 @@
+{{ 'section-about-norvue.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+</style>
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+  <div class="about-norvue content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} about-norvue--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+    <div class="about-norvue__wrapper{% if section.settings.full_width %} page-width{% endif %}">
+      <div class="about-norvue__blocks center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="about-norvue__heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="about-norvue__text rte">
+            {{ section.settings.text }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Intersection Observer for fade-in animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-active');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '0px 0px -100px 0px', // Triggers when element is 100px into the viewport
+        threshold: 0.1,
+      }
+    );
+
+    // Observe the about-norvue element
+    const aboutNorveElement = document.querySelector('.about-norvue__blocks');
+    if (aboutNorveElement) {
+      observer.observe(aboutNorveElement);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "About NORVUE",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Om NORVUE",
+      "label": "Overskrift"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Medium"
+        },
+        {
+          "value": "h1",
+          "label": "Stor"
+        },
+        {
+          "value": "h0",
+          "label": "Ekstra stor"
+        }
+      ],
+      "default": "h1",
+      "label": "Overskriftstørrelse"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Her kan du fortælle om NORVUE og hvad der gør jer unikke. Tilføj din historie, vision og værdier.</p>",
+      "label": "Tekst"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "Fuld bredde"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding indstillinger"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "About NORVUE",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %}
