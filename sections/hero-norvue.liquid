@@ -1,44 +1,33 @@
 {{ 'section-hero-norvue.css' | asset_url | stylesheet_tag }}
 
 <div class="hero-norvue">
-  <div class="hero-norvue__container color-{{ section.settings.color_scheme }}">
+  <div class="hero-norvue__wrapper color-{{ section.settings.color_scheme }}">
     <div class="hero-norvue__text-column animate-element">
       <div class="hero-norvue__text-content">
         {%- if section.settings.heading != blank -%}
           <h1 class="hero-norvue__heading">{{ section.settings.heading }}</h1>
         {%- endif -%}
 
-        {%- if section.settings.text != blank -%}
-          <div class="hero-norvue__text rte">{{ section.settings.text }}</div>
+        {%- if section.settings.subtext != blank -%}
+          <div class="hero-norvue__subtext rte">{{ section.settings.subtext }}</div>
         {%- endif -%}
 
         {%- if section.settings.button_label != blank -%}
-          <div class="hero-norvue__button-wrapper">
-            <a
-              href="{{ section.settings.button_link }}"
-              class="hero-norvue__button button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-            >
-              {{ section.settings.button_label | escape }}
-            </a>
-          </div>
+          <a href="{{ section.settings.button_link }}" class="hero-norvue__button">
+            {{ section.settings.button_label | escape }}
+          </a>
         {%- endif -%}
       </div>
     </div>
 
-    <div
-      class="hero-norvue__image-column"
-      {% if section.settings.image != blank %}
-        style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"
-      {% endif %}
-    ></div>
-    <div
-      class="hero-norvue__image-column"
-      {% if section.settings.image != blank %}
-        style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"
-      {% else %}
-        style="background-color: #f4f4f4;"
-      {% endif %}
-    ></div>
+    <div class="hero-norvue__image-column">
+      <div
+        class="hero-norvue__image"
+        {% if section.settings.image != blank %}
+          style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}');"
+        {% endif %}
+      ></div>
+    </div>
   </div>
 </div>
 
@@ -46,11 +35,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     const animatedElements = document.querySelectorAll('.animate-element');
 
-    // Sæt initial styling på elementer
+    // Sæt initial styling
     animatedElements.forEach((element) => {
       element.style.opacity = '0';
-      element.style.transform = 'translateX(-40px)';
-      element.style.transition = 'opacity 0.9s ease-out, transform 0.9s ease-out';
+      element.style.transform = 'translateX(-30px)';
     });
 
     // Observer til fade-in animation
@@ -58,7 +46,7 @@
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Trigger animation når element er synligt
+            // Trigger animation
             setTimeout(() => {
               entry.target.style.opacity = '1';
               entry.target.style.transform = 'translateX(0)';
@@ -68,7 +56,7 @@
         });
       },
       {
-        threshold: 0.15,
+        threshold: 0.1,
       }
     );
 
@@ -83,24 +71,24 @@
 {
   "name": "Hero Banner",
   "tag": "section",
-  "class": "section section-full-height",
+  "class": "section section-hero",
   "settings": [
     {
       "type": "text",
       "id": "heading",
-      "default": "NORVUE Collection",
+      "default": "TANREVEL LIVING",
       "label": "Overskrift"
     },
     {
       "type": "richtext",
-      "id": "text",
-      "default": "<p>Moderne design med fokus på kvalitet og bæredygtighed. Oplev vores kollektion af tidløse stykker, der kombinerer skandinavisk æstetik med funktionalitet.</p>",
-      "label": "Tekst"
+      "id": "subtext",
+      "default": "<p>Smukke boligtekstiler af allergivenlige og bæredygtige kvaliteter - præcis som et hjem skal føles.</p>",
+      "label": "Undertekst"
     },
     {
       "type": "text",
       "id": "button_label",
-      "default": "Shop nu",
+      "default": "Shop",
       "label": "Knap tekst"
     },
     {
@@ -109,15 +97,9 @@
       "label": "Knap link"
     },
     {
-      "type": "checkbox",
-      "id": "button_style_secondary",
-      "default": false,
-      "label": "Brug sekundær knap-stil"
-    },
-    {
       "type": "image_picker",
       "id": "image",
-      "label": "Baggrundsbillede"
+      "label": "Billede"
     },
     {
       "type": "color_scheme",
@@ -128,7 +110,7 @@
   ],
   "presets": [
     {
-      "name": "NORVUE Hero",
+      "name": "Tanrevel Hero",
       "category": "Hero"
     }
   ]

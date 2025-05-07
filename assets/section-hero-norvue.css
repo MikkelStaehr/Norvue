@@ -1,64 +1,79 @@
-.section-full-height {
-  padding: 0;
+.section-hero {
   margin: 0;
+  padding: 0;
 }
 
 .hero-norvue {
   width: 100%;
   height: 100vh;
-  position: relative;
   overflow: hidden;
 }
 
-.hero-norvue__container {
+.hero-norvue__wrapper {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
 .hero-norvue__text-column {
+  width: 50%;
   display: flex;
   align-items: center;
-  width: 50%;
   padding: 0 5% 0 10%;
   box-sizing: border-box;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .hero-norvue__text-content {
-  max-width: 560px;
+  max-width: 540px;
 }
 
 .hero-norvue__heading {
-  font-size: clamp(2.8rem, 3.5vw, 4.2rem);
-  line-height: 1.05;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-.hero-norvue__text {
-  font-size: clamp(1rem, 1.1vw, 1.25rem);
-  line-height: 1.7;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.8rem;
   font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #000;
 }
 
-.hero-norvue__button-wrapper {
-  margin-top: 0.5rem;
+.hero-norvue__subtext {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+  color: #333;
 }
 
 .hero-norvue__button {
-  padding: 1.1rem 2.8rem;
-  min-width: 180px;
-  font-size: 0.95rem;
-  letter-spacing: 0.05em;
-  font-weight: 500;
+  display: inline-block;
+  min-width: 120px;
+  padding: 15px 35px;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  border-radius: 0;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-norvue__button:hover {
+  background-color: #333;
 }
 
 .hero-norvue__image-column {
   width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.hero-norvue__image {
+  width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -68,51 +83,41 @@
 /* Responsive styling */
 @media screen and (max-width: 989px) {
   .hero-norvue__text-column {
-    width: 65%;
-    padding: 0 5% 0 8%;
+    width: 60%;
+    padding: 0 5% 0 7%;
   }
   
   .hero-norvue__image-column {
-    width: 35%;
+    width: 40%;
   }
   
   .hero-norvue__heading {
-    font-size: clamp(2.2rem, 3vw, 3rem);
+    font-size: 3rem;
     margin-bottom: 1.5rem;
   }
   
-  .hero-norvue__text {
-    font-size: 1rem;
+  .hero-norvue__subtext {
+    font-size: 1.05rem;
     margin-bottom: 2rem;
-  }
-  
-  .hero-norvue__button {
-    padding: 1rem 2.5rem;
   }
 }
 
 @media screen and (max-width: 749px) {
-  .hero-norvue__container {
+  .hero-norvue__wrapper {
     flex-direction: column;
   }
   
   .hero-norvue__text-column {
     width: 100%;
-    padding: 10% 7%;
-    justify-content: center;
+    height: 100%;
+    padding: 5rem 2rem;
+    align-items: center;
     text-align: center;
-  }
-  
-  .hero-norvue__text-content {
-    margin: 0 auto;
+    justify-content: center;
   }
   
   .hero-norvue__image-column {
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: none; /* Skjul billedet på mobil */
   }
   
   .hero-norvue__heading {
@@ -120,11 +125,7 @@
     margin-bottom: 1.2rem;
   }
   
-  .hero-norvue__text {
-    margin-bottom: 2rem;
-  }
-  
-  .hero-norvue__button {
-    padding: 1rem 2.2rem;
+  .hero-norvue__text-content {
+    margin: 0 auto;
   }
 }
