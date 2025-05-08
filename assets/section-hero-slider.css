@@ -75,23 +75,24 @@
 
 .hero-slider__button {
   display: inline-block;
-  min-width: 120px;
-  padding: 15px 35px;
-  font-size: 0.9rem;
+  min-width: 150px;
+  padding: 16px 40px;
+  font-size: 0.95rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   text-align: center;
-  background-color: #000;
-  color: #fff;
+  background-color: #D77F4F;
+  color: #F6F6F3;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 2px;
 }
 
 .hero-slider__button:hover {
-  background-color: #333;
+  background-color: #B96639;
   transform: translateY(-2px);
 }
 

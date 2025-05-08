@@ -99,6 +99,18 @@
         background-color: rgb(var(--color-background));
       }
 
+      /* Transparent header-scroll effekt */
+      .header-wrapper {
+        background: transparent;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        z-index: 10;
+      }
+
+      .header-wrapper.scrolled {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
       :root {
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
