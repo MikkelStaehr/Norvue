@@ -2342,6 +2342,11 @@ input[type='checkbox'] {
 }
 
 .header-wrapper {
+  display: block;
+  position: relative;
+}
+
+.header-wrapper {
   background-color: transparent !important;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 10;
@@ -2357,16 +2362,6 @@ input[type='checkbox'] {
 }
 
 /* Main Header Layout */
-.header-wrapper {
-  display: block;
-  position: relative;
-  background-color: rgb(var(--color-background));
-}
-
-.header-wrapper--border-bottom {
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
-}
-
 .header {
   display: grid;
   grid-template-areas: 'left-icons heading icons';
