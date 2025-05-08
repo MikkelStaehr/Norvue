@@ -3597,6 +3597,10 @@ details-disclosure > details {
 }
 /* Header: transparent ved load, hvid ved scroll */
 .shopify-section-header.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
   background: transparent;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }

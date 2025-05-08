@@ -296,7 +296,6 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-      {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ 'component-card.css' | asset_url | stylesheet_tag }}
   {{ 'section-hero-slider.css' | asset_url | stylesheet_tag }}
   <!-- Hero Font Combos -->
@@ -377,22 +376,24 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <!-- Header scroll transparency -->
     <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('.shopify-section-header.sticky-header');
-    if (!header) return;
+      document.addEventListener('DOMContentLoaded', () => {
+        const header = document.querySelector('.shopify-section-header.sticky-header');
+        if (!header) return;
 
-    const onScroll = () => {
-      if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    };
+        const onScroll = () => {
+          if (window.scrollY > 20) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        };
 
-    window.addEventListener('scroll', onScroll);
-    onScroll(); // initial check
-  });
-</script>
-
+        window.addEventListener('scroll', onScroll);
+        onScroll(); // initial state
+      });
+    </script>
+  </body>
 </html>
