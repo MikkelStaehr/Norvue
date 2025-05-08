@@ -3629,18 +3629,22 @@ details-disclosure > details {
 .header-wrapper {
   background-color: transparent !important;
 }
-/* Header text color when transparent vs. scrolled */
+/* Force white text/icons in header when not scrolled */
 .shopify-section-header.sticky-header .header__menu-item,
 .shopify-section-header.sticky-header .header__icon,
-.shopify-section-header.sticky-header .header__heading-link {
-  color: white;
-  fill: white;
-  transition: color 0.3s ease, fill 0.3s ease;
+.shopify-section-header.sticky-header .header__heading-link,
+.shopify-section-header.sticky-header .header__icon .icon,
+.shopify-section-header.sticky-header .header__heading-link .h2 {
+  color: white !important;
+  fill: white !important;
 }
 
+/* On scroll: back to black */
 .shopify-section-header.sticky-header.scrolled .header__menu-item,
 .shopify-section-header.sticky-header.scrolled .header__icon,
-.shopify-section-header.sticky-header.scrolled .header__heading-link {
-  color: black;
-  fill: black;
+.shopify-section-header.sticky-header.scrolled .header__heading-link,
+.shopify-section-header.sticky-header.scrolled .header__icon .icon,
+.shopify-section-header.sticky-header.scrolled .header__heading-link .h2 {
+  color: black !important;
+  fill: black !important;
 }
