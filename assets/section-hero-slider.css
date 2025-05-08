@@ -28,22 +28,34 @@
   
   .hero-slider__content {
     position: absolute;
-    bottom: 12%;
-    left: 10%;
-    max-width: 550px;
-    color: white;
+    bottom: 10%;
+    left: 8%;
+    max-width: 600px;
+    padding: 0 2rem;
     z-index: 2;
+    color: white;
+  }
+  
+  .hero-slider__content > * {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease-out forwards;
   }
   
   .hero-slider__heading {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    animation-delay: 0.2s;
   }
   
   .hero-slider__subtext {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    animation-delay: 0.4s;
   }
   
   .hero-slider__button {
@@ -55,20 +67,36 @@
     font-weight: bold;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    animation-delay: 0.6s;
   }
   
   .hero-slider__button:hover {
     background-color: #B96639;
   }
+  
+  /* Fade-up animation */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
   /* CYKLING */
-.style-cycling .hero-slider__heading {
+  .style-cycling .hero-slider__heading {
     color: #ffffff;
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 700;
   }
+  
   .style-cycling .hero-slider__subtext {
     color: #f0f0f0;
   }
+  
   .style-cycling .hero-slider__button {
     background-color: #D77F4F;
     color: #F6F6F3;
@@ -80,9 +108,11 @@
     font-family: 'Georgia', serif;
     text-transform: uppercase;
   }
+  
   .style-golf .hero-slider__subtext {
     color: #264d26;
   }
+  
   .style-golf .hero-slider__button {
     background-color: #4F7942;
     color: #fff;
@@ -94,13 +124,14 @@
     font-family: 'Orbitron', sans-serif;
     text-shadow: 0 0 10px #39FF14;
   }
+  
   .style-gaming .hero-slider__subtext {
     color: #c1ffc1;
   }
+  
   .style-gaming .hero-slider__button {
     background-color: #000;
     color: #39FF14;
     border: 1px solid #39FF14;
   }
-  
   
