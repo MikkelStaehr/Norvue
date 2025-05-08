@@ -3595,20 +3595,6 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
-/* Header: transparent ved load, hvid ved scroll */
-.shopify-section-header.sticky-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 20;
-  background: transparent;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.shopify-section-header.sticky-header.scrolled {
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-}
 
 /* Header layout adjustments */
 .header__inline-menu {
@@ -3625,4 +3611,21 @@ details-disclosure > details {
 .header-wrapper {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+.shopify-section-header.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shopify-section-header.sticky-header.scrolled {
+  background: #ffffff !important; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+/* Override header background on load (transparent) */
+.header-wrapper {
+  background-color: transparent !important;
 }
