@@ -3648,3 +3648,13 @@ details-disclosure > details {
   color: black !important;
   fill: black !important;
 }
+/* Aktiv menu item på HVID baggrund ved scroll */
+.shopify-section-header.sticky-header.scrolled .header__menu-item--active {
+  color: black !important;
+}
+
+/* Aktiv menu item på TRANSPARENT baggrund (top) */
+.shopify-section-header.sticky-header .header__menu-item--active {
+  color: white !important;
+}
+
