@@ -1,0 +1,90 @@
+{{ 'section-hero-slider.css' | asset_url | stylesheet_tag }}
+
+<section class="hero-slider">
+  <div class="hero-slider__slides">
+    {% for block in section.blocks %}
+      <div class="hero-slider__slide{% if forloop.first %} is-active{% endif %}"
+        style="background-image: url({{ block.settings.image | image_url: width: 2000 }});">
+        <div class="hero-slider__content">
+          <h1 class="hero-slider__heading">{{ block.settings.heading }}</h1>
+          <p class="hero-slider__subtext">{{ block.settings.subtext }}</p>
+          {% if block.settings.button_label != blank %}
+            <a href="{{ block.settings.button_link }}" class="hero-slider__button">
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.hero-slider__slide');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === index);
+      });
+    }
+
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 5000);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "tag": "section",
+  "class": "section hero-slider-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Baggrundsbillede"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Overskrift",
+          "default": "NORVUE – Performance Eyewear"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Undertekst",
+          "default": "Klarhed. Fokus. Uden kompromis."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Knap tekst",
+          "default": "Se vores udvalg"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Knap link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}
