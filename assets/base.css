@@ -3595,3 +3595,30 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+/* Header: transparent ved load, hvid ved scroll */
+.shopify-section-header.sticky-header {
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shopify-section-header.sticky-header.scrolled {
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Header layout adjustments */
+.header__inline-menu {
+  gap: 40px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.header__heading-logo {
+  max-height: 40px;
+}
+
+.header-wrapper {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
