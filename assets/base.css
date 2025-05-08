@@ -2341,10 +2341,10 @@ input[type='checkbox'] {
 
 /* Main Header Layout */
 .header-wrapper {
-  display: block;
-  position: relative;
-  background-color: rgb(var(--color-background));
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .header-wrapper--border-bottom {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
@@ -3628,4 +3628,19 @@ details-disclosure > details {
 /* Override header background on load (transparent) */
 .header-wrapper {
   background-color: transparent !important;
+}
+/* Header text color when transparent vs. scrolled */
+.shopify-section-header.sticky-header .header__menu-item,
+.shopify-section-header.sticky-header .header__icon,
+.shopify-section-header.sticky-header .header__heading-link {
+  color: white;
+  fill: white;
+  transition: color 0.3s ease, fill 0.3s ease;
+}
+
+.shopify-section-header.sticky-header.scrolled .header__menu-item,
+.shopify-section-header.sticky-header.scrolled .header__icon,
+.shopify-section-header.sticky-header.scrolled .header__heading-link {
+  color: black;
+  fill: black;
 }
