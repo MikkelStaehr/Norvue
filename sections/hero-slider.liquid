@@ -3,7 +3,7 @@
 <section class="hero-slider">
   <div class="hero-slider__slides">
     {% for block in section.blocks %}
-      <div class="hero-slider__slide {{ block.settings.style_variant }}{% if forloop.first %} is-active{% endif %}"
+       <div class="hero-slider__slide {{ block.settings.style_variant }} {{ block.settings.heading_style }}{% if forloop.first %} is-active{% endif %}"
            style="background-image: url({{ block.settings.image | image_url: width: 2000 }});">
         <div class="hero-slider__content">
           <h1 class="hero-slider__heading {{ block.settings.heading_style }}">
