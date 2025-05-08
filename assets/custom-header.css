@@ -1,21 +1,11 @@
 /* Custom Header Styles */
-.visually-hidden {
-  position: absolute !important;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  word-wrap: normal !important;
-}
 
-/* Tilføj padding til main indhold */
+/* Sørg for at der er plads til headeren */
 #MainContent {
-  padding-top: 80px; /* Justér denne værdi baseret på header-højden */
+  padding-top: 70px; /* Justér efter headerens højde */
 }
 
+/* Grundlæggende header styling */
 .custom-header {
   position: fixed;
   top: 0;
@@ -26,11 +16,13 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Styling ved scroll */
 .custom-header.scrolled {
   background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Header container */
 .custom-header__container {
   display: flex;
   align-items: center;
@@ -38,37 +30,33 @@
   padding: 15px 40px;
   max-width: 1400px;
   margin: 0 auto;
-  visibility: visible;
-  opacity: 1;
 }
 
+/* Logo styling */
 .custom-header__logo {
   flex: 0 0 auto;
-  visibility: visible;
-  opacity: 1;
 }
 
 .custom-header__logo-image {
   display: block;
-  max-height: 50px;
+  max-height: 40px;
   width: auto;
 }
 
 .custom-header__logo-text {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #000;
+  transition: color 0.3s ease;
 }
 
+/* Navigation styling */
 .custom-header__nav {
   display: flex;
-  justify-content: flex-end;
-  flex: 1 1 auto;
-  visibility: visible;
-  opacity: 1;
+  align-items: center;
 }
 
-.custom-header__menu-list {
+.custom-header__menu {
   display: flex;
   list-style: none;
   margin: 0;
@@ -76,40 +64,40 @@
 }
 
 .custom-header__menu-item {
-  position: relative;
   margin-left: 30px;
+  position: relative;
 }
 
 .custom-header__menu-link {
-  display: block;
-  padding: 5px 0;
   color: #000;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
+  display: block;
+  padding: 5px 0;
 }
 
 .custom-header__menu-link:hover {
   color: #555;
 }
 
-/* Submenu styles */
+/* Submenu styling */
 .custom-header__submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #fff;
   min-width: 200px;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
   padding: 10px 0;
   margin-top: 10px;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  z-index: 101;
+  z-index: 10;
 }
 
 .custom-header__menu-item:hover .custom-header__submenu {
@@ -123,11 +111,11 @@
 }
 
 .custom-header__submenu-link {
-  display: block;
-  padding: 8px 20px;
   color: #000;
   text-decoration: none;
   font-size: 14px;
+  display: block;
+  padding: 8px 20px;
   transition: background-color 0.2s ease;
 }
 
@@ -135,108 +123,69 @@
   background-color: #f5f5f5;
 }
 
-.custom-header__icons {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.custom-header__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 15px;
-  color: #000;
-  text-decoration: none;
-}
-
-.custom-header__cart {
-  position: relative;
-}
-
-.custom-header__cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: #ff4c4c;
-  color: #fff;
-  font-size: 10px;
-  font-weight: bold;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-/* Mobile Menu Styles */
+/* Mobile toggle button */
 .custom-header__mobile-toggle {
   display: none;
   background: none;
   border: none;
-  padding: 0;
   width: 30px;
   height: 24px;
   position: relative;
   cursor: pointer;
   z-index: 102;
+  padding: 0;
 }
 
-.custom-header__mobile-toggle-icon,
-.custom-header__mobile-toggle-icon::before,
-.custom-header__mobile-toggle-icon::after {
+.custom-header__mobile-toggle-bar {
   display: block;
   width: 100%;
   height: 2px;
   background-color: #000;
   position: absolute;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  left: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
-.custom-header__mobile-toggle-icon {
+.custom-header__mobile-toggle-bar:nth-child(1) {
+  top: 0;
+}
+
+.custom-header__mobile-toggle-bar:nth-child(2) {
   top: 50%;
   transform: translateY(-50%);
 }
 
-.custom-header__mobile-toggle-icon::before,
-.custom-header__mobile-toggle-icon::after {
-  content: '';
+.custom-header__mobile-toggle-bar:nth-child(3) {
+  bottom: 0;
 }
 
-.custom-header__mobile-toggle-icon::before {
-  top: -8px;
+/* Animated mobile toggle */
+.custom-header__mobile-toggle[aria-expanded="true"] .custom-header__mobile-toggle-bar:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
 }
 
-.custom-header__mobile-toggle-icon::after {
-  bottom: -8px;
+.custom-header__mobile-toggle[aria-expanded="true"] .custom-header__mobile-toggle-bar:nth-child(2) {
+  opacity: 0;
 }
 
-.custom-header__mobile-toggle[aria-expanded="true"] .custom-header__mobile-toggle-icon {
-  background-color: transparent;
+.custom-header__mobile-toggle[aria-expanded="true"] .custom-header__mobile-toggle-bar:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
 }
 
-.custom-header__mobile-toggle[aria-expanded="true"] .custom-header__mobile-toggle-icon::before {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.custom-header__mobile-toggle[aria-expanded="true"] .custom-header__mobile-toggle-icon::after {
-  transform: rotate(-45deg) translate(7px, -6px);
-}
-
+/* Mobile menu */
 .custom-header__mobile-menu {
   display: none;
   position: fixed;
   top: 0;
-  right: -300px;
+  right: -100%;
   width: 300px;
   height: 100vh;
   background-color: #fff;
+  z-index: 101;
   padding: 80px 30px 30px;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   transition: right 0.3s ease;
-  z-index: 101;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .custom-header__mobile-menu.active {
@@ -250,36 +199,35 @@
 }
 
 .custom-header__mobile-menu-item {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .custom-header__mobile-menu-link {
-  display: block;
-  padding: 5px 0;
   color: #000;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
-  flex: 1;
+  display: block;
 }
 
+/* Mobile submenu */
 .custom-header__mobile-submenu-toggle {
   background: none;
   border: none;
-  padding: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
   cursor: pointer;
-  flex: 0 0 auto;
+  padding: 0 10px;
 }
 
 .custom-header__mobile-submenu {
   display: none;
-  width: 100%;
+  padding-left: 15px;
+  margin-top: 10px;
   list-style: none;
-  margin: 10px 0 0;
-  padding: 0 0 0 15px;
 }
 
 .custom-header__mobile-submenu.active {
@@ -291,26 +239,23 @@
 }
 
 .custom-header__mobile-submenu-link {
-  display: block;
   color: #000;
   text-decoration: none;
   font-size: 16px;
+  display: block;
 }
 
-/* Customize header text color based on scroll state */
-.custom-header:not(.scrolled) .custom-header__menu-link,
+/* Transparent header styling */
 .custom-header:not(.scrolled) .custom-header__logo-text,
-.custom-header:not(.scrolled) .custom-header__icon {
+.custom-header:not(.scrolled) .custom-header__menu-link {
   color: #fff;
 }
 
-.custom-header:not(.scrolled) .custom-header__mobile-toggle-icon,
-.custom-header:not(.scrolled) .custom-header__mobile-toggle-icon::before,
-.custom-header:not(.scrolled) .custom-header__mobile-toggle-icon::after {
+.custom-header:not(.scrolled) .custom-header__mobile-toggle-bar {
   background-color: #fff;
 }
 
-/* Media queries for responsive design */
+/* Responsive styles */
 @media (max-width: 991px) {
   .custom-header__container {
     padding: 15px 20px;
@@ -327,10 +272,6 @@
   .custom-header__mobile-menu {
     display: block;
   }
-
-  .custom-header__icons {
-    margin-right: 40px; /* Give space for the mobile toggle */
-  }
 }
 
 @media (max-width: 480px) {
@@ -339,6 +280,6 @@
   }
   
   .custom-header__logo-image {
-    max-height: 40px;
+    max-height: 30px;
   }
 } 

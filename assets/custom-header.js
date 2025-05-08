@@ -1,7 +1,10 @@
 // Custom Header JavaScript
 document.addEventListener('DOMContentLoaded', function () {
-  // Get header element
+  // Elements
   const header = document.querySelector('.custom-header');
+  const mobileToggle = document.querySelector('.custom-header__mobile-toggle');
+  const mobileMenu = document.querySelector('.custom-header__mobile-menu');
+  const submenuToggles = document.querySelectorAll('.custom-header__mobile-submenu-toggle');
 
   // Handle scroll effect
   function handleScroll() {
@@ -12,16 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Check scroll position on load
+  // Check scroll position on page load
   handleScroll();
 
   // Add scroll event listener
   window.addEventListener('scroll', handleScroll);
 
-  // Mobile menu functionality
-  const mobileToggle = document.querySelector('.custom-header__mobile-toggle');
-  const mobileMenu = document.querySelector('.custom-header__mobile-menu');
-
+  // Mobile menu toggle
   if (mobileToggle && mobileMenu) {
     mobileToggle.addEventListener('click', function () {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
@@ -34,31 +34,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Mobile submenu toggles
-  const submenuToggles = document.querySelectorAll('.custom-header__mobile-submenu-toggle');
-
+  // Submenu toggles in mobile menu
   submenuToggles.forEach((toggle) => {
     toggle.addEventListener('click', function () {
       const submenu = this.nextElementSibling;
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-      this.setAttribute('aria-expanded', !isExpanded);
+      this.textContent = submenu.classList.contains('active') ? '+' : '−';
       submenu.classList.toggle('active');
-
-      // Update the button text or icon
-      this.innerHTML = !isExpanded
-        ? '<span class="visually-hidden">Luk</span>−'
-        : '<span class="visually-hidden">Åbn</span>+';
     });
   });
 
   // Close mobile menu when clicking outside
   document.addEventListener('click', function (event) {
     if (mobileMenu && mobileMenu.classList.contains('active')) {
-      const isClickInsideMenu = mobileMenu.contains(event.target);
-      const isClickOnToggle = mobileToggle.contains(event.target);
-
-      if (!isClickInsideMenu && !isClickOnToggle) {
+      if (!mobileMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
         mobileMenu.classList.remove('active');
         mobileToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
@@ -66,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Handle window resize (e.g., close mobile menu when resizing to desktop)
+  // Close mobile menu on window resize (when switching to desktop)
   window.addEventListener('resize', function () {
     if (window.innerWidth > 991 && mobileMenu && mobileMenu.classList.contains('active')) {
       mobileMenu.classList.remove('active');
