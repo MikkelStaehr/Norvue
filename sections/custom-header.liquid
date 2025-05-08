@@ -1,0 +1,106 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-header.js' | asset_url }}" defer="defer"></script>
+
+<div class="custom-header" id="custom-header">
+  <div class="custom-header__container">
+    <div class="custom-header__logo">
+      <a href="{{ routes.root_url }}">
+        {%- if settings.logo != blank -%}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+          {{ settings.logo | image_url: width: 200 | image_tag:
+            class: 'custom-header__logo-image',
+            widths: '50, 100, 150, 200',
+            height: logo_height,
+            width: settings.logo_width,
+            alt: logo_alt
+          }}
+        {%- else -%}
+          <span class="custom-header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+    
+    <div class="custom-header__nav">
+      <nav class="custom-header__menu">
+        <ul class="custom-header__menu-list">
+          {%- for link in linklists.main-menu.links -%}
+            <li class="custom-header__menu-item">
+              <a href="{{ link.url }}" class="custom-header__menu-link">{{ link.title }}</a>
+              {%- if link.links.size > 0 -%}
+                <ul class="custom-header__submenu">
+                  {%- for childlink in link.links -%}
+                    <li class="custom-header__submenu-item">
+                      <a href="{{ childlink.url }}" class="custom-header__submenu-link">{{ childlink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
+
+    <div class="custom-header__icons">
+      <a href="{{ routes.search_url }}" class="custom-header__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="custom-header__icon custom-header__cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="custom-header__cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+
+    <button class="custom-header__mobile-toggle" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="custom-header__mobile-toggle-icon"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+  </div>
+
+  <div class="custom-header__mobile-menu" id="mobile-menu">
+    <nav class="custom-header__mobile-nav">
+      <ul class="custom-header__mobile-menu-list">
+        {%- for link in linklists.main-menu.links -%}
+          <li class="custom-header__mobile-menu-item">
+            <a href="{{ link.url }}" class="custom-header__mobile-menu-link">{{ link.title }}</a>
+            {%- if link.links.size > 0 -%}
+              <button class="custom-header__mobile-submenu-toggle" aria-expanded="false">
+                <span class="visually-hidden">Expand submenu</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <ul class="custom-header__mobile-submenu">
+                {%- for childlink in link.links -%}
+                  <li class="custom-header__mobile-submenu-item">
+                    <a href="{{ childlink.url }}" class="custom-header__mobile-submenu-link">{{ childlink.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %} 
