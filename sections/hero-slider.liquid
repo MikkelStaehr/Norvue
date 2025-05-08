@@ -1,7 +1,7 @@
 {{ 'section-hero-slider.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'hero-slider.js' | asset_url }}" defer="defer"></script>
 
-<div class="hero-slider" data-autoplay="true" data-slide-interval="5000">
+<div class="hero-slider color-{{ section.settings.color_scheme }}" data-autoplay="true" data-slide-interval="5000">
   <div class="hero-slider__slides" id="hero-slider-{{ section.id }}">
     {%- for block in section.blocks -%}
       <div
@@ -11,19 +11,20 @@
         {% if block.settings.image != blank %}
           style="background-image: url({{ block.settings.image | image_url: width: 2000 }});"
         {% endif %}
+        {{ block.shopify_attributes }}
       >
         <div class="hero-slider__content-container">
           <div class="hero-slider__content">
             {%- if block.settings.heading != blank -%}
-              <h2 class="hero-slider__heading">{{ block.settings.heading }}</h2>
+              <h2 class="hero-slider__heading animate-element">{{ block.settings.heading }}</h2>
             {%- endif -%}
 
             {%- if block.settings.subtext != blank -%}
-              <div class="hero-slider__subtext rte">{{ block.settings.subtext }}</div>
+              <div class="hero-slider__subtext rte animate-element">{{ block.settings.subtext }}</div>
             {%- endif -%}
 
             {%- if block.settings.button_label != blank -%}
-              <a href="{{ block.settings.button_link }}" class="hero-slider__button">
+              <a href="{{ block.settings.button_link }}" class="hero-slider__button animate-element">
                 {{ block.settings.button_label | escape }}
               </a>
             {%- endif -%}
@@ -54,6 +55,42 @@
     </div>
   {%- endif -%}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Animation for elements when slide becomes active
+    const animateSlideContent = (slide) => {
+      const elements = slide.querySelectorAll('.animate-element');
+      
+      elements.forEach((el, index) => {
+        // Reset animation
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        
+        // Trigger animation with delay
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 100 + (index * 150));
+      });
+    };
+    
+    // Initialize animations for first slide
+    const firstSlide = document.querySelector('.hero-slider__slide.active');
+    if (firstSlide) {
+      animateSlideContent(firstSlide);
+    }
+    
+    // Add event listener for slide changes
+    document.addEventListener('slideChange', function(e) {
+      const newSlide = e.detail.newSlide;
+      if (newSlide) {
+        animateSlideContent(newSlide);
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
