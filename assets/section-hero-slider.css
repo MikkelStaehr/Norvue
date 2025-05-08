@@ -168,4 +168,94 @@
     font-style: italic;
     font-weight: 400;
   }
+  .combo-bolditalic .part1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  .combo-bolditalic .part2 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+  
+  .combo-contrast .part1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .combo-contrast .part2 {
+    font-family: 'Domine', serif;
+    font-weight: 700;
+  }
+  
+  .combo-brutalist .part1 {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  .combo-brutalist .part2 {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+  
+  .combo-soft .part1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+  }
+  .combo-soft .part2 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+  }
+  
+  .combo-futurist .part1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .combo-futurist .part2 {
+    font-family: 'Roboto Mono', monospace;
+    color: #00ffd5;
+  }
+  
+  .combo-handwritten .part1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+  }
+  .combo-handwritten .part2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+  }
+  
+  .combo-slab .part1 {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .combo-slab .part2 {
+    font-family: 'Domine', serif;
+    font-weight: 700;
+  }
+  
+  .combo-minimal .part1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .combo-minimal .part2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+  }
+  
+  .combo-vogue .part1 {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .combo-vogue .part2 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
   
