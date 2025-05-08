@@ -99,30 +99,6 @@
         background-color: rgb(var(--color-background));
       }
 
-      /* Header scroll-styling */
-      .header-wrapper {
-        background: transparent;
-        transition: background 0.3s ease, box-shadow 0.3s ease;
-        position: fixed;
-        width: 100%;
-        z-index: 10;
-      }
-
-      .header-wrapper.scrolled {
-        background: #fff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      }
-
-      /* Tilføj padding for at undgå at indhold skjules under den fixed header */
-      main {
-        padding-top: var(--header-height, 90px);
-      }
-
-      /* Fjern padding på forsiden, når slideren skal være fuld højde */
-      .template-index main {
-        padding-top: 0;
-      }
-
       :root {
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
@@ -132,8 +108,6 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
-
-        --header-height: 90px;
         
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -398,25 +372,5 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-
-    <script>
-      // Header scroll-effekt
-      window.addEventListener('scroll', function () {
-        const header = document.querySelector('.header-wrapper');
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
-
-      // Initialiser header-tilstand ved page load
-      document.addEventListener('DOMContentLoaded', function() {
-        const header = document.querySelector('.header-wrapper');
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        }
-      });
-    </script>
   </body>
 </html>
