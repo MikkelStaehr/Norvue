@@ -24,20 +24,22 @@
     <div class="custom-header__nav">
       <nav class="custom-header__menu">
         <ul class="custom-header__menu-list">
-          {%- for link in linklists.main-menu.links -%}
-            <li class="custom-header__menu-item">
-              <a href="{{ link.url }}" class="custom-header__menu-link">{{ link.title }}</a>
-              {%- if link.links.size > 0 -%}
-                <ul class="custom-header__submenu">
-                  {%- for childlink in link.links -%}
-                    <li class="custom-header__submenu-item">
-                      <a href="{{ childlink.url }}" class="custom-header__submenu-link">{{ childlink.title }}</a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
-            </li>
-          {%- endfor -%}
+          {%- if section.settings.menu != blank -%}
+            {%- for link in section.settings.menu.links -%}
+              <li class="custom-header__menu-item">
+                <a href="{{ link.url }}" class="custom-header__menu-link">{{ link.title }}</a>
+                {%- if link.links.size > 0 -%}
+                  <ul class="custom-header__submenu">
+                    {%- for childlink in link.links -%}
+                      <li class="custom-header__submenu-item">
+                        <a href="{{ childlink.url }}" class="custom-header__submenu-link">{{ childlink.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          {%- endif -%}
         </ul>
       </nav>
     </div>
@@ -68,26 +70,28 @@
   <div class="custom-header__mobile-menu" id="mobile-menu">
     <nav class="custom-header__mobile-nav">
       <ul class="custom-header__mobile-menu-list">
-        {%- for link in linklists.main-menu.links -%}
-          <li class="custom-header__mobile-menu-item">
-            <a href="{{ link.url }}" class="custom-header__mobile-menu-link">{{ link.title }}</a>
-            {%- if link.links.size > 0 -%}
-              <button class="custom-header__mobile-submenu-toggle" aria-expanded="false">
-                <span class="visually-hidden">Expand submenu</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <ul class="custom-header__mobile-submenu">
-                {%- for childlink in link.links -%}
-                  <li class="custom-header__mobile-submenu-item">
-                    <a href="{{ childlink.url }}" class="custom-header__mobile-submenu-link">{{ childlink.title }}</a>
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
+        {%- if section.settings.menu != blank -%}
+          {%- for link in section.settings.menu.links -%}
+            <li class="custom-header__mobile-menu-item">
+              <a href="{{ link.url }}" class="custom-header__mobile-menu-link">{{ link.title }}</a>
+              {%- if link.links.size > 0 -%}
+                <button class="custom-header__mobile-submenu-toggle" aria-expanded="false">
+                  <span class="visually-hidden">Expand submenu</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <ul class="custom-header__mobile-submenu">
+                  {%- for childlink in link.links -%}
+                    <li class="custom-header__mobile-submenu-item">
+                      <a href="{{ childlink.url }}" class="custom-header__mobile-submenu-link">{{ childlink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
       </ul>
     </nav>
   </div>
@@ -96,7 +100,14 @@
 {% schema %}
 {
   "name": "Custom Header",
-  "settings": [],
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation",
+      "default": "main-menu"
+    }
+  ],
   "presets": [
     {
       "name": "Custom Header"

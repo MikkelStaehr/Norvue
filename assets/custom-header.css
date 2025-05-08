@@ -38,10 +38,14 @@
   padding: 15px 40px;
   max-width: 1400px;
   margin: 0 auto;
+  visibility: visible;
+  opacity: 1;
 }
 
 .custom-header__logo {
   flex: 0 0 auto;
+  visibility: visible;
+  opacity: 1;
 }
 
 .custom-header__logo-image {
@@ -60,6 +64,8 @@
   display: flex;
   justify-content: flex-end;
   flex: 1 1 auto;
+  visibility: visible;
+  opacity: 1;
 }
 
 .custom-header__menu-list {
