@@ -60,4 +60,47 @@
   .hero-slider__button:hover {
     background-color: #B96639;
   }
+  /* CYKLING */
+.style-cycling .hero-slider__heading {
+    color: #ffffff;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+  }
+  .style-cycling .hero-slider__subtext {
+    color: #f0f0f0;
+  }
+  .style-cycling .hero-slider__button {
+    background-color: #D77F4F;
+    color: #F6F6F3;
+  }
+  
+  /* GOLF */
+  .style-golf .hero-slider__heading {
+    color: #003300;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+  }
+  .style-golf .hero-slider__subtext {
+    color: #264d26;
+  }
+  .style-golf .hero-slider__button {
+    background-color: #4F7942;
+    color: #fff;
+  }
+  
+  /* GAMING */
+  .style-gaming .hero-slider__heading {
+    color: #39FF14;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px #39FF14;
+  }
+  .style-gaming .hero-slider__subtext {
+    color: #c1ffc1;
+  }
+  .style-gaming .hero-slider__button {
+    background-color: #000;
+    color: #39FF14;
+    border: 1px solid #39FF14;
+  }
+  
   

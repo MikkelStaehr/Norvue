@@ -3,8 +3,8 @@
 <section class="hero-slider">
   <div class="hero-slider__slides">
     {% for block in section.blocks %}
-      <div class="hero-slider__slide{% if forloop.first %} is-active{% endif %}"
-        style="background-image: url({{ block.settings.image | image_url: width: 2000 }});">
+      <div class="hero-slider__slide {{ block.settings.style_variant }}{% if forloop.first %} is-active{% endif %}"
+           style="background-image: url({{ block.settings.image | image_url: width: 2000 }});">
         <div class="hero-slider__content">
           <h1 class="hero-slider__heading">{{ block.settings.heading }}</h1>
           <p class="hero-slider__subtext">{{ block.settings.subtext }}</p>
@@ -75,6 +75,17 @@
           "type": "url",
           "id": "button_link",
           "label": "Knap link"
+        },
+        {
+          "type": "select",
+          "id": "style_variant",
+          "label": "Designstil",
+          "options": [
+            { "value": "style-cycling", "label": "Cykling (moderne, hvid tekst)" },
+            { "value": "style-golf", "label": "Golf (elegant, grøn accent)" },
+            { "value": "style-gaming", "label": "Gaming (tech look, neongrøn)" }
+          ],
+          "default": "style-cycling"
         }
       ]
     }
