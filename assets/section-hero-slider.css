@@ -134,4 +134,38 @@
     color: #39FF14;
     border: 1px solid #39FF14;
   }
+  .combo-modern .part1 {
+    font-weight: 800;
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: -0.03em;
+  }
+  
+  .combo-modern .part2 {
+    font-style: italic;
+    font-family: 'Georgia', serif;
+  }
+  
+  .combo-tech .part1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .combo-tech .part2 {
+    font-family: 'Courier New', monospace;
+    font-weight: 400;
+    color: #39FF14;
+  }
+  
+  .combo-elegant .part1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  
+  .combo-elegant .part2 {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
   

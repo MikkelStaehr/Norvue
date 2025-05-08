@@ -6,7 +6,10 @@
       <div class="hero-slider__slide {{ block.settings.style_variant }}{% if forloop.first %} is-active{% endif %}"
            style="background-image: url({{ block.settings.image | image_url: width: 2000 }});">
         <div class="hero-slider__content">
-          <h1 class="hero-slider__heading">{{ block.settings.heading }}</h1>
+          <h1 class="hero-slider__heading {{ block.settings.heading_style }}">
+            <span class="part1">{{ block.settings.heading_part_1 }}</span>
+            <span class="part2">{{ block.settings.heading_part_2 }}</span>
+          </h1>
           <p class="hero-slider__subtext">{{ block.settings.subtext }}</p>
           {% if block.settings.button_label != blank %}
             <a href="{{ block.settings.button_link }}" class="hero-slider__button">
@@ -55,9 +58,26 @@
         },
         {
           "type": "text",
-          "id": "heading",
-          "label": "Overskrift",
-          "default": "NORVUE – Performance Eyewear"
+          "id": "heading_part_1",
+          "label": "Overskrift – del 1",
+          "default": "OPDAG"
+        },
+        {
+          "type": "text",
+          "id": "heading_part_2",
+          "label": "Overskrift – del 2",
+          "default": "KLARHED"
+        },
+        {
+          "type": "select",
+          "id": "heading_style",
+          "label": "Typografi-stil",
+          "options": [
+            { "value": "combo-modern", "label": "Modern (bold + italic serif)" },
+            { "value": "combo-tech", "label": "Tech (caps + mono)" },
+            { "value": "combo-elegant", "label": "Elegant (serif + italic)" }
+          ],
+          "default": "combo-modern"
         },
         {
           "type": "textarea",
