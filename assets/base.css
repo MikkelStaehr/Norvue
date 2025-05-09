@@ -3669,3 +3669,8 @@ details-disclosure > details {
 .shopify-section-header.sticky-header .header-wrapper {
   background-color: transparent !important;
 }
+.shopify-section-header,
+.shopify-section-header .header,
+.shopify-section-header .header-wrapper {
+  background-color: transparent !important;
+}
