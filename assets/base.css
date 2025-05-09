@@ -3661,3 +3661,16 @@ details-disclosure > details {
   transform: translateY(-100%);
   transition: transform 0.3s ease;
 }
+/* Smooth header hide/show on scroll */
+.sticky-header {
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.sticky-header.hide-on-scroll {
+  transform: translateY(-100%);
+}
+
+.sticky-header.show-on-scroll {
+  transform: translateY(0);
+}

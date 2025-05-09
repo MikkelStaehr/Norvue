@@ -413,5 +413,27 @@
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Avoid negative scroll
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.shopify-section-header.sticky-header');
+    if (!header) return;
+
+    let lastScroll = window.scrollY;
+
+    const onScroll = () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        header.classList.remove('show-on-scroll');
+        header.classList.add('hide-on-scroll');
+      } else {
+        header.classList.remove('hide-on-scroll');
+        header.classList.add('show-on-scroll');
+      }
+      lastScroll = currentScroll;
+    };
+
+    window.addEventListener('scroll', onScroll);
+  });
+</script>
   </body>
 </html>
