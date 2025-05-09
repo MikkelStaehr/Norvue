@@ -3613,21 +3613,31 @@ details-disclosure > details {
   padding-bottom: 12px;
 }
 .shopify-section-header.sticky-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 20;
-  background: transparent;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent;
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+}
+.shopify-section-header.sticky-header.scrolled {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
-.shopify-section-header.sticky-header.scrolled {
-  background: #ffffff !important; 
+.shopify-section-header.sticky-header.hide-on-scroll {
+  transform: translateY(-100%);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.shopify-section-header.sticky-header.show-on-scroll {
+  transform: translateY(0);
+  background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 /* Override header background on load (transparent) */
 .header-wrapper {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 /* Force white text/icons in header when not scrolled */
 .shopify-section-header.sticky-header .header__menu-item,
