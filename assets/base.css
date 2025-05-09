@@ -3628,6 +3628,9 @@ details-disclosure > details {
   background-color: transparent;
   box-shadow: none;
 }
+.shopify-section-header.sticky-header.color-scheme-1.gradient .header-wrapper {
+  background-color: transparent !important;
+}
 
 .shopify-section-header.sticky-header.show-on-scroll {
   transform: translateY(0);
