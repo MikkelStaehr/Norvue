@@ -3666,6 +3666,6 @@ details-disclosure > details {
 .sticky-header.show-on-scroll {
   transform: translateY(0);
 }
-.shopify-section-header .header-wrapper {
+.shopify-section-header.sticky-header .header-wrapper {
   background-color: transparent !important;
 }
