@@ -3618,7 +3618,7 @@ details-disclosure > details {
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 .shopify-section-header.sticky-header.scrolled .header-wrapper {
-  background-color: transparent;
+  background-color: transparent !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
