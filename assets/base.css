@@ -3631,6 +3631,7 @@ details-disclosure > details {
 
 .shopify-section-header.sticky-header.show-on-scroll {
   transform: translateY(0);
+  background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 /* Override header background on load (transparent) */
