@@ -3614,7 +3614,7 @@ details-disclosure > details {
 }
 /* Base: transparent når ikke scrolled */
 .shopify-section-header.sticky-header:not(.scrolled) .header-wrapper {
-  background-color: transparent !important;
+  background-color: transparent;
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 .shopify-section-header.sticky-header.scrolled .header-wrapper {
@@ -3631,8 +3631,6 @@ details-disclosure > details {
 
 .shopify-section-header.sticky-header.show-on-scroll {
   transform: translateY(0);
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 /* Override header background on load (transparent) */
 .header-wrapper {
@@ -3646,20 +3644,6 @@ details-disclosure > details {
 .shopify-section-header.sticky-header .header__heading-link .h2 {
   color: white !important;
   fill: white !important;
-}
-
-/* On scroll: back to black */
-.shopify-section-header.sticky-header.scrolled .header__menu-item,
-.shopify-section-header.sticky-header.scrolled .header__icon,
-.shopify-section-header.sticky-header.scrolled .header__heading-link,
-.shopify-section-header.sticky-header.scrolled .header__icon .icon,
-.shopify-section-header.sticky-header.scrolled .header__heading-link .h2 {
-  color: black !important;
-  fill: black !important;
-}
-/* Aktiv menu item på HVID baggrund ved scroll */
-.shopify-section-header.sticky-header.scrolled .header__menu-item--active {
-  color: black !important;
 }
 
 /* Aktiv menu item på TRANSPARENT baggrund (top) */
