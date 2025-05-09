@@ -3634,7 +3634,7 @@ details-disclosure > details {
 }
 /* Override header background on load (transparent) */
 .header-wrapper {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 /* Force white text/icons in header when not scrolled */
 .shopify-section-header.sticky-header .header__menu-item,
