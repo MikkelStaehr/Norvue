@@ -3614,11 +3614,11 @@ details-disclosure > details {
 }
 /* Base: transparent når ikke scrolled */
 .shopify-section-header.sticky-header:not(.scrolled) .header-wrapper {
-  background-color: transparent;
+  background-color: white;
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 .shopify-section-header.sticky-header.scrolled .header-wrapper {
-  background-color: white;
+  background-color: transparent;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
