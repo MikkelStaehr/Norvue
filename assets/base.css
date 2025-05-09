@@ -3635,10 +3635,6 @@ details-disclosure > details {
 .shopify-section-header.sticky-header.show-on-scroll {
   transform: translateY(0);
 }
-/* Override header background on load (transparent) */
-.header-wrapper {
-  background-color: transparent;
-}
 /* Force white text/icons in header when not scrolled */
 .shopify-section-header.sticky-header .header__menu-item,
 .shopify-section-header.sticky-header .header__icon,
