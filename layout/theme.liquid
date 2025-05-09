@@ -368,72 +368,23 @@
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
     </script>
-
-    {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
-
-    {%- if settings.cart_type == 'drawer' -%}
-      <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
-
-    <!-- Header scroll transparency -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const header = document.querySelector('.shopify-section-header.sticky-header');
-        if (!header) return;
-
-        const onScroll = () => {
-          if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-          } else {
-            header.classList.remove('scrolled');
-          }
-        };
-
-        window.addEventListener('scroll', onScroll);
-        onScroll(); // initial state
-      });
-    </script>
-    <script>
-  let lastScrollTop = 0;
-  const header = document.querySelector('.shopify-section-header');
-
-  window.addEventListener('scroll', function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > lastScrollTop) {
-      // scrolling down – hide header
-      header.classList.add('header-hidden');
-    } else {
-      // scrolling up – show header
-      header.classList.remove('header-hidden');
-    }
-
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Avoid negative scroll
-  });
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('.shopify-section-header.sticky-header');
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.shopify-section-header');
     if (!header) return;
 
-    let lastScroll = window.scrollY;
-
-    const onScroll = () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        header.classList.remove('show-on-scroll');
-        header.classList.add('hide-on-scroll');
-      } else {
-        header.classList.remove('hide-on-scroll');
-        header.classList.add('show-on-scroll');
-      }
-      lastScroll = currentScroll;
+    const handleScroll = () => {
+    if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+    } else {
+    header.classList.remove('scrolled');
+    }
     };
 
-    window.addEventListener('scroll', onScroll);
-  });
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Kør ved første load
+    });
 </script>
+
   </body>
 </html>
