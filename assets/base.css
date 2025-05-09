@@ -3648,7 +3648,7 @@ details-disclosure > details {
 
 /* Aktiv menu item på TRANSPARENT baggrund (top) */
 .shopify-section-header.sticky-header .header__menu-item--active {
-  color: white !important;
+  color: white;
 }
 .shopify-section-header.header-hidden {
   transform: translateY(-100%);
